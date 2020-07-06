@@ -1,9 +1,28 @@
+package chess.engine.board;
+
+import chess.engine.pieces.Piece;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class Tile {
 
-    int tileCoordinate;
+    protected final int tileCoordinate;
+    private static final Map<Integer, EmptyTile> EMPTY_TILES = createBoard();
 
+
+    //Constructor
     Tile(int tileCoordinate){
         this.tileCoordinate = tileCoordinate;
+    }
+
+    //Create empty board
+    private static Map<Integer, EmptyTile> createBoard() {
+        final Map<Integer, EmptyTile> emptyBoard = new HashMap<>();
+        for(int i = 0;i < 64;i++){
+            emptyBoard.put(i, new EmptyTile(i));
+        }
+        return emptyBoard;
     }
 
     //is tile occupied
@@ -34,7 +53,7 @@ public abstract class Tile {
     //Occupied tile child class
     public static final class OccupiedTile extends Tile{
 
-        Piece pieceOnTile;
+        private final Piece pieceOnTile;
 
         OccupiedTile(int cooridnate, Piece pieceOnTile) {
             super(cooridnate);
