@@ -7,6 +7,7 @@ import java.util.Map;
 
 public abstract class Tile {
 
+    //Abstract class properties
     protected final int tileCoordinate;
     private static final Map<Integer, EmptyTile> EMPTY_TILES = createBoard();
 
@@ -31,8 +32,11 @@ public abstract class Tile {
     //Piece on tile
     public abstract Piece getPiece();
 
+
+
+
     //Empty tile child class
-    public static final class EmptyTile extends Tile{
+    private static final class EmptyTile extends Tile{
         EmptyTile(int cooridnate) {
             super(cooridnate);
         }
@@ -51,7 +55,7 @@ public abstract class Tile {
 
 
     //Occupied tile child class
-    public static final class OccupiedTile extends Tile{
+    private static final class OccupiedTile extends Tile{
 
         private final Piece pieceOnTile;
 
