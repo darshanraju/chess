@@ -23,9 +23,17 @@ public class BoardUtils {
     }
 
     public static List<Integer> intToMatrixMap(int coordinate){
+       int row;
+       int col;
        final List<Integer> coord = new ArrayList<>();
-       int row = coordinate/8;
-       int col = coordinate - (8*row);
+       if(coordinate%8 == 0){
+           row = coordinate/8;
+           col = 8;
+       } else {
+           row = (coordinate/8);
+           col = coordinate - (8*row);
+           row += 1;
+       }
        coord.add(row);
        coord.add(col);
        return coord;
@@ -39,7 +47,6 @@ public class BoardUtils {
     }
 
     public static void main(String[] args) {
-        int dist = distanceFromDestinationTile(17 , 7);
-        System.out.println(dist);
+        System.out.print(intToMatrixMap(15));
     }
 }

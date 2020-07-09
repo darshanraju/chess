@@ -8,8 +8,7 @@ import chess.engine.board.Tile;
 import java.util.ArrayList;
 import java.util.List;
 
-import static chess.engine.board.BoardUtils.distanceFromDestinationTile;
-import static chess.engine.board.BoardUtils.tileExists;
+import static chess.engine.board.BoardUtils.*;
 
 public class Knight extends Piece{
 
@@ -32,19 +31,35 @@ public class Knight extends Piece{
 
             //If new position is on board
             if(distanceFromDestinationTile(this.piecePosition, DestinationCoordinate) == 3 && tileExists(DestinationCoordinate)){
-                final Tile candidateDestinationTile = board.getTile(DestinationCoordinate);
+                final Tile DestinationTile = board.getTile(DestinationCoordinate);
                 //If the tile is empty
-                if(!candidateDestinationTile.isTileOccupied()){
+                if(!DestinationTile.isTileOccupied()){
                     legalMoves.add(new Move());
+                    System.out.println(intToMatrixMap(DestinationCoordinate));
                 } else {
-                    final Piece pieceAtDestination = candidateDestinationTile.getPiece();
+                    final Piece pieceAtDestination = DestinationTile.getPiece();
                     if(pieceAtDestination.pieceAllience != this.pieceAllience){
                         legalMoves.add(new Move());
+                        System.out.println(intToMatrixMap(DestinationCoordinate));
                     }
                 }
             }
         }
 
     return legalMoves;
+    }
+
+    public static void main(String[] args) {
+        int coord = 25;
+        System.out.print("Starting at: "+intToMatrixMap(coord)+"\n");
+        for (final int currentCandidate : CANDIDATE_MOVE_COORDINATES) {
+            //Get Possible Position
+            int DestinationCoordinate = coord + currentCandidate;
+
+            //If new position is on board
+            if (distanceFromDestinationTile(coord, DestinationCoordinate) == 3 && tileExists(DestinationCoordinate)) {
+                System.out.println(intToMatrixMap(DestinationCoordinate));
+            }
+        }
     }
 }
