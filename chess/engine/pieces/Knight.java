@@ -10,6 +10,7 @@ import java.util.List;
 
 import static chess.engine.board.BoardUtils.*;
 
+
 public class Knight extends Piece{
 
     //Available moves from current position
