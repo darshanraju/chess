@@ -20,7 +20,7 @@ public abstract class Tile {
     //Create empty board
     private static Map<Integer, EmptyTile> createBoard() {
         final Map<Integer, EmptyTile> emptyBoard = new HashMap<>();
-        for(int i = 0;i < 64;i++){
+        for(int i = 1;i <= 64;i++){
             emptyBoard.put(i, new EmptyTile(i));
         }
         return emptyBoard;
